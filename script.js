@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('plug-btn');
     const cable = document.getElementById('ethernet-cable');
     const sound = document.getElementById('click-sound');
+    
+    // Grab the new LEDs
+    const linkLed = document.getElementById('led-link');
+    const actLed = document.getElementById('led-act');
 
     let isPluggedIn = false;
 
@@ -10,55 +14,26 @@ document.addEventListener('DOMContentLoaded', () => {
             // Animate cable
             cable.classList.add('plugged-in');
             
-            // Play sound with a slight delay to match the visual hitting the port
+            // Wait for the physical "click" before turning on lights
             setTimeout(() => {
-                sound.currentTime = 0; // Reset sound to start
+                sound.currentTime = 0; 
                 sound.play();
-            }, 100); 
+                
+                // Turn on the LEDs!
+                linkLed.classList.add('link-active');
+                actLed.classList.add('act-active');
+            }, 150); 
 
             btn.textContent = "Unplug Cable";
             isPluggedIn = true;
         } else {
-            // Unplug it
+            // Unplug it and instantly kill the lights
             cable.classList.remove('plugged-in');
+            linkLed.classList.remove('link-active');
+            actLed.classList.remove('act-active');
+            
             btn.textContent = "Insert Cable";
             isPluggedIn = false;
         }
     });
 });
-/* LED Styling */
-.led {
-    width: 12px;
-    height: 12px;
-    background-color: #313244; /* Dark grey when unplugged */
-    position: absolute;
-    top: 4px;
-    border-radius: 2px;
-    box-shadow: inset 0 0 3px black;
-    transition: background-color 0.1s;
-}
-
-.left-led { left: 6px; }
-.right-led { right: 6px; }
-
-/* The Solid Green Link Light */
-.led.link-active {
-    background-color: #a6e3a1; 
-    box-shadow: 0 0 10px #a6e3a1, inset 0 0 2px white;
-}
-
-/* The Blinking Amber/Green Activity Light */
-.led.act-active {
-    background-color: #a6e3a1; 
-    box-shadow: 0 0 10px #a6e3a1;
-    animation: network-traffic 0.3s infinite;
-}
-
-/* Simulating random packet activity */
-@keyframes network-traffic {
-    0% { opacity: 1; }
-    25% { opacity: 0.2; }
-    50% { opacity: 1; }
-    75% { opacity: 0.5; }
-    100% { opacity: 0; }
-}
