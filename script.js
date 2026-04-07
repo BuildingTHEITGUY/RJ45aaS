@@ -14,14 +14,21 @@ document.addEventListener('DOMContentLoaded', () => {
             // Animate cable
             cable.classList.add('plugged-in');
             
-            // Wait for the physical "click" before turning on lights
+            // Wait for the physical "click"
             setTimeout(() => {
-                sound.currentTime = 0; 
-                sound.play();
-                
-                // Turn on the LEDs!
-                linkLed.classList.add('link-active');
-                actLed.classList.add('act-active');
+                // 1. TURN ON LEDS FIRST (So they never fail)
+                if (linkLed) linkLed.classList.add('link-active');
+                if (actLed) actLed.classList.add('act-active');
+
+                // 2. PLAY SOUND SECOND
+                try {
+                    if (sound) {
+                        sound.currentTime = 0; 
+                        sound.play();
+                    }
+                } catch (error) {
+                    console.log("Sound skipped, but lights are on!");
+                }
             }, 150); 
 
             btn.textContent = "Unplug Cable";
@@ -29,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // Unplug it and instantly kill the lights
             cable.classList.remove('plugged-in');
-            linkLed.classList.remove('link-active');
-            actLed.classList.remove('act-active');
+            if (linkLed) linkLed.classList.remove('link-active');
+            if (actLed) actLed.classList.remove('act-active');
             
             btn.textContent = "Insert Cable";
             isPluggedIn = false;
