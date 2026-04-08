@@ -86,7 +86,7 @@ h1 {
 
 /* The animation class triggered by JavaScript */
 .cable.plugged-in {
-    transform: translateY(-130px);
+    transform: translateY(-90px);
 }
 
 button {
