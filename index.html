@@ -7,11 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
+    <div class="racks-container">
+        <div class="rack left-rack">
+            <div class="server cisco"><div class="tiny-led blink-fast"></div><div class="tiny-led"></div></div>
+            <div class="server fortigate"><div class="tiny-led"></div><div class="tiny-led blink-slow"></div></div>
+            <div class="server generic"><div class="tiny-led blink-fast"></div></div>
+        </div>
+        <div class="rack right-rack">
+            <div class="server paloalto"><div class="tiny-led blink-slow"></div><div class="tiny-led"></div></div>
+            <div class="server juniper"><div class="tiny-led blink-fast"></div><div class="tiny-led blink-slow"></div></div>
+            <div class="server generic"><div class="tiny-led"></div></div>
+        </div>
+    </div>
+
     <div class="container">
-        <h1>RJ45 as a Service 🔌</h1>
-        <p>The missing tactile feedback of modern cloud infrastructure.<br><em>Because clicking a mouse will never feel as good as seating Cat6.</em></p>
-        
-        <br><br>
+        <div class="header-text">
+            <h1>RJ45 as a Service 🔌</h1>
+            <p>The missing tactile feedback of modern cloud infrastructure.<br><em>Because clicking a mouse will never feel as good as seating Cat6.</em></p>
+        </div>
 
         <div class="network-setup">
             <div class="port">
@@ -27,11 +41,11 @@
             </div>
         </div>
 
-        <br>
         <button id="plug-btn">Insert Cable</button>
     </div>
 
     <audio id="click-sound" src="click.mp3"></audio>
+
     <script src="script.js"></script>
 </body>
 </html>
