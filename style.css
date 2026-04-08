@@ -210,3 +210,25 @@ button:active { transform: scale(0.95); }
     h1 { font-size: 1.6rem; }
     p { font-size: 0.85rem; }
 }
+.story-text {
+    max-width: 600px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #bac2de; /* Slightly dimmed text for a moody feel */
+}
+
+.story-text strong {
+    color: #a6e3a1; /* Blinking green LED color for tech words */
+    font-weight: bold;
+}
+
+.story-text em {
+    color: #f38ba8; /* Red emphasis for the 'snap' */
+    font-style: italic;
+}
+
+.punchline {
+    display: block;
+    font-size: 1.15rem;
+    color: #89b4fa; /* Blue cable color for the final call to action */
+    margin-top: 10px;
